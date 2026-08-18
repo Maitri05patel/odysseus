@@ -73,3 +73,69 @@ This document records every prompt given to the AI assistant during this project
 ## Prompt 3 — User Approved Implementation Plan (2026-08-18)
 
 > [User approved the implementation_plan.md artifact and confirmed to proceed]
+
+---
+
+## Prompt 4 — Seed Data (2026-08-18)
+
+> seed this data
+>
+> and also tell me where db is located..
+
+*(User provided the cruise and promo code seed data at this point. The seed script was updated to use the provided data and the database location was confirmed as `odysseus/odysseus.db` in the project root.)*
+
+---
+
+## Prompt 5 — README (2026-08-18)
+
+> make readme file
+> where all info abt project and how to run project and all instructions are there
+
+*(A full `README.md` was created covering features, tech stack, project structure, quick start, environment variables, database, seeding, running the API, API reference, running tests, pricing rules, promo code rules, and documentation links.)*
+
+---
+
+## Prompt 6 — Build Attractive UI (2026-08-18)
+
+> we have time left, so lets build attractive ui
+
+*(A full browser-based SPA was built in `frontend/` using HTML, CSS, and vanilla JavaScript. Design: dark ocean theme, glassmorphism cards, animated hero section, floating orbs, wave animations, Outfit + Playfair Display fonts. The UI is a 4-step booking wizard covering cruise browsing, passenger selection, extras + promo, and review & confirm.)*
+
+---
+
+## Prompt 7 — Continue UI (2026-08-18)
+
+> continue from where was left
+
+*(The `frontend/app.js` state machine was completed — `selectCruise` was refactored to use array indices to avoid JSON-in-HTML attribute parsing issues. The `main.py` was updated to serve the frontend via `StaticFiles`. A live estimated fare box was added to Step 2.)*
+
+---
+
+## Prompt 8 — Update All Docs (2026-08-18)
+
+> update the docs
+> update the readme and all docs
+> update all the docs as the project
+> update docs including readme and add how to run the programme
+
+*(All documentation was updated to reflect the completed full-stack project:)*
+- *`README.md` — updated with two-server setup (backend `:8001`, frontend `:5500`), booking flow, troubleshooting section, and development workflow.*
+- *`docs/TechnicalApproach.md` — added Frontend row to stack table, updated "What Would Be Done Differently" row, added `frontend/` to file map, added new §7 Frontend Architecture section.*
+- *`docs/BusinessRequirements.md` — updated context paragraph and Assumption A6 to reflect the delivered SPA.*
+- *`docs/UnitTestCases.md` — corrected SQLite type (file-based, not in-memory), added per-file test counts, confirmed 99 total passing tests.*
+
+---
+
+## Prompt 9 — Bug Fix: Duplicate Code in app.js (2026-08-18)
+
+> *(Automatic — spotted during doc update)*
+
+*(Removed orphaned duplicate code block at module scope in `frontend/app.js` left from manual editing — variable declarations outside any function that would cause a `ReferenceError`. Fixed missing closing brace on `updateFrontendPrice()`. Added missing `.live-price-box` CSS styles to `style.css`. Node.js syntax check confirmed clean.)*
+
+---
+
+## Prompt 10 — Add Relevant Prompts to Prompts.md (2026-08-18)
+
+> please add relevant prompts to prompts.md file
+
+*(This update — all prompts from the session were backfilled into this document.)*
