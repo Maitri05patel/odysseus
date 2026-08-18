@@ -1,333 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Odysseus — Cruise Holidays</title>
-  <meta name="description" content="Book luxury cruise holidays with Odysseus. Discover stunning destinations, get instant price quotes, and confirm your dream voyage." />
+  <meta name="description"
+    content="Book luxury cruise holidays with Odysseus. Discover stunning destinations, get instant price quotes, and confirm your dream voyage." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,500&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<!-- ── NAV ──────────────────────────────────────────────── -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="#" class="logo" onclick="showPage('home')">
-      <span class="logo-icon">⚓</span>
-      <span class="logo-text">Odysseus</span>
-    </a>
-    <div class="nav-links">
-      <a href="#" onclick="showPage('home')" class="nav-link">Cruises</a>
-      <a href="#" onclick="showPage('lookup')" class="nav-link">My Booking</a>
-      <a href="/docs" target="_blank" class="nav-link">API Docs</a>
-    </div>
-  </div>
-</nav>
-
-<!-- ── HERO ──────────────────────────────────────────────── -->
-<section class="hero" id="page-home">
-  <div class="hero-bg">
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
-    <div class="waves">
-      <div class="wave wave-1"></div>
-      <div class="wave wave-2"></div>
-      <div class="wave wave-3"></div>
-    </div>
-  </div>
-  <div class="hero-content">
-    <div class="hero-badge">✦ Luxury Cruise Holidays</div>
-    <h1 class="hero-title">
-      Set Sail for<br/>
-      <em>Extraordinary</em>
-    </h1>
-    <p class="hero-subtitle">Discover world-class cruises, get instant quotes, and book your dream voyage in minutes.</p>
-    <button class="btn btn-hero" onclick="scrollToCruises()">
-      Explore Cruises
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </button>
-  </div>
-  <div class="hero-scroll-hint">
-    <div class="scroll-dot"></div>
-    <span>Scroll to discover</span>
-  </div>
-</section>
-
-<!-- ── CRUISE LISTINGS ──────────────────────────────────── -->
-<section class="section cruises-section" id="cruises-section">
-  <div class="container">
-    <div class="section-header">
-      <p class="section-label">AVAILABLE NOW</p>
-      <h2 class="section-title">Our Featured Voyages</h2>
-      <p class="section-sub">All prices include taxes and are price-locked for 15 minutes once quoted.</p>
-    </div>
-    <div class="cruise-grid" id="cruise-grid">
-      <div class="cruise-skeleton"></div>
-      <div class="cruise-skeleton"></div>
-      <div class="cruise-skeleton"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ── BOOKING WIZARD ────────────────────────────────────── -->
-<div class="page hidden" id="page-booking">
-  <div class="wizard-wrap">
-
-    <!-- Progress bar -->
-    <div class="wizard-progress">
-      <div class="progress-line"><div class="progress-fill" id="progress-fill"></div></div>
-      <div class="progress-steps">
-        <div class="pstep active" id="pstep-1"><span class="pstep-num">1</span><span class="pstep-label">Passengers</span></div>
-        <div class="pstep" id="pstep-2"><span class="pstep-num">2</span><span class="pstep-label">Extras</span></div>
-        <div class="pstep" id="pstep-3"><span class="pstep-num">3</span><span class="pstep-label">Your Details</span></div>
-        <div class="pstep" id="pstep-4"><span class="pstep-num">4</span><span class="pstep-label">Review & Pay</span></div>
+  <!-- ── NAV ──────────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo" onclick="showPage('home')">
+        <span class="logo-icon">⚓</span>
+        <span class="logo-text">Odysseus</span>
+      </a>
+      <div class="nav-links">
+        <a href="#" onclick="showPage('home')" class="nav-link">Cruises</a>
+        <a href="#" onclick="showPage('lookup')" class="nav-link">My Booking</a>
+        <a href="/docs" target="_blank" class="nav-link">API Docs</a>
       </div>
     </div>
+  </nav>
 
-    <!-- Cruise summary banner -->
-    <div class="cruise-banner" id="cruise-banner">
-      <button class="btn-back" onclick="showPage('home')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Back
+  <!-- ── HERO ──────────────────────────────────────────────── -->
+  <section class="hero" id="page-home">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="waves">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">✦ Luxury Cruise Holidays</div>
+      <h1 class="hero-title">
+        Set Sail for<br />
+        <em>Extraordinary</em>
+      </h1>
+      <p class="hero-subtitle">Discover world-class cruises, get instant quotes, and book your dream voyage in minutes.
+      </p>
+      <button class="btn btn-hero" onclick="scrollToCruises()">
+        Explore Cruises
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
       </button>
-      <div class="banner-info">
-        <div class="banner-name" id="banner-name">—</div>
-        <div class="banner-meta" id="banner-meta">—</div>
-      </div>
-      <div class="banner-fare" id="banner-fare">—</div>
     </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-dot"></div>
+      <span>Scroll to discover</span>
+    </div>
+  </section>
 
-    <!-- Step 1: Passengers -->
-    <div class="wizard-step" id="step-1">
-      <h2 class="step-title">Who's travelling?</h2>
-      <p class="step-sub">Select the number of adults and add children with their ages.</p>
+  <!-- ── CRUISE LISTINGS ──────────────────────────────────── -->
+  <section class="section cruises-section" id="cruises-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">AVAILABLE NOW</p>
+        <h2 class="section-title">Our Featured Voyages</h2>
+        <p class="section-sub">All prices include taxes and are price-locked for 15 minutes once quoted.</p>
+      </div>
+      <div class="cruise-grid" id="cruise-grid">
+        <div class="cruise-skeleton"></div>
+        <div class="cruise-skeleton"></div>
+        <div class="cruise-skeleton"></div>
+      </div>
+    </div>
+  </section>
 
-      <div class="form-card">
-        <div class="counter-row">
-          <div class="counter-info">
-            <div class="counter-label">Adults</div>
-            <div class="counter-hint">18 years and over</div>
-          </div>
-          <div class="counter-ctrl">
-            <button class="counter-btn" id="adult-dec" onclick="changeAdults(-1)">−</button>
-            <span class="counter-val" id="adult-count">2</span>
-            <button class="counter-btn" id="adult-inc" onclick="changeAdults(1)">+</button>
-          </div>
+  <!-- ── BOOKING WIZARD ────────────────────────────────────── -->
+  <div class="page hidden" id="page-booking">
+    <div class="wizard-wrap">
+
+      <!-- Progress bar -->
+      <div class="wizard-progress">
+        <div class="progress-line">
+          <div class="progress-fill" id="progress-fill"></div>
         </div>
-
-        <div class="divider"></div>
-
-        <div class="counter-row">
-          <div class="counter-info">
-            <div class="counter-label">Children</div>
-            <div class="counter-hint">Ages 0–17 (we'll ask each child's age)</div>
+        <div class="progress-steps">
+          <div class="pstep active" id="pstep-1"><span class="pstep-num">1</span><span
+              class="pstep-label">Passengers</span></div>
+          <div class="pstep" id="pstep-2"><span class="pstep-num">2</span><span class="pstep-label">Extras</span></div>
+          <div class="pstep" id="pstep-3"><span class="pstep-num">3</span><span class="pstep-label">Your Details</span>
           </div>
-          <div class="counter-ctrl">
-            <button class="counter-btn" id="child-dec" onclick="changeChildren(-1)">−</button>
-            <span class="counter-val" id="child-count">0</span>
-            <button class="counter-btn" id="child-inc" onclick="changeChildren(1)">+</button>
+          <div class="pstep" id="pstep-4"><span class="pstep-num">4</span><span class="pstep-label">Review & Pay</span>
           </div>
-        </div>
-
-        <div class="child-ages-wrap" id="child-ages-wrap"></div>
-
-        <div class="pax-info-bar" id="pax-info-bar">
-          <span class="pax-info-icon">ℹ</span>
-          <span id="pax-info-text">2 adults · no children · max 6 passengers</span>
         </div>
       </div>
 
-      <div class="step-actions">
-        <button class="btn btn-primary" onclick="goStep(2)">
-          Continue
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <!-- Cruise summary banner -->
+      <div class="cruise-banner" id="cruise-banner">
+        <button class="btn-back" onclick="showPage('home')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          Back
         </button>
-      </div>
-    </div>
-
-    <!-- Step 2: Extras -->
-    <div class="wizard-step hidden" id="step-2">
-      <h2 class="step-title">Optional Extras</h2>
-      <p class="step-sub">Enhance your voyage with our premium add-ons.</p>
-
-      <div class="extras-grid">
-        <label class="extra-card" id="extra-INSURANCE">
-          <input type="checkbox" value="INSURANCE" onchange="updateExtras()" />
-          <div class="extra-icon">🛡️</div>
-          <div class="extra-body">
-            <div class="extra-name">Travel Insurance</div>
-            <div class="extra-desc">Comprehensive travel protection for complete peace of mind</div>
-            <div class="extra-price">$80 <span>per passenger</span></div>
-          </div>
-          <div class="extra-check">✓</div>
-        </label>
-
-        <label class="extra-card" id="extra-WIFI">
-          <input type="checkbox" value="WIFI" onchange="updateExtras()" />
-          <div class="extra-icon">📶</div>
-          <div class="extra-body">
-            <div class="extra-name">Wi-Fi Package</div>
-            <div class="extra-desc">Stay connected with high-speed internet throughout your cruise</div>
-            <div class="extra-price">$15 <span>per passenger / night</span></div>
-          </div>
-          <div class="extra-check">✓</div>
-        </label>
-
-        <label class="extra-card" id="extra-SHORE_EXCURSION">
-          <input type="checkbox" value="SHORE_EXCURSION" onchange="updateExtras()" />
-          <div class="extra-icon">🏝️</div>
-          <div class="extra-body">
-            <div class="extra-name">Shore Excursion</div>
-            <div class="extra-desc">Guided tours and experiences at every port of call</div>
-            <div class="extra-price">$120 <span>per passenger</span></div>
-          </div>
-          <div class="extra-check">✓</div>
-        </label>
-      </div>
-
-      <div class="promo-wrap">
-        <div class="promo-label">Have a promo code?</div>
-        <div class="promo-input-row">
-          <input type="text" id="promo-input" class="input" placeholder="e.g. SUMMER10" oninput="clearPromoStatus()" />
-          <button class="btn btn-outline" onclick="applyPromo()">Apply</button>
+        <div class="banner-info">
+          <div class="banner-name" id="banner-name">—</div>
+          <div class="banner-meta" id="banner-meta">—</div>
         </div>
-        <div class="promo-status" id="promo-status"></div>
+        <div class="banner-fare" id="banner-fare">—</div>
       </div>
 
-      <div class="step-actions">
-        <button class="btn btn-ghost" onclick="goStep(1)">← Back</button>
-        <button class="btn btn-primary" onclick="goStep(3)">
-          Continue
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </div>
+      <!-- Step 1: Passengers -->
+      <div class="wizard-step" id="step-1">
+        <h2 class="step-title">Who's travelling?</h2>
+        <p class="step-sub">Select the number of adults and add children with their ages.</p>
 
-    <!-- Step 3: Customer Details -->
-    <div class="wizard-step hidden" id="step-3">
-      <h2 class="step-title">Your Details</h2>
-      <p class="step-sub">We'll send your booking confirmation to this email address.</p>
-
-      <div class="form-card">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">First Name</label>
-            <input type="text" id="first-name" class="input" placeholder="Jane" />
+        <div class="form-card">
+          <div class="counter-row">
+            <div class="counter-info">
+              <div class="counter-label">Adults</div>
+              <div class="counter-hint">18 years and over</div>
+            </div>
+            <div class="counter-ctrl">
+              <button class="counter-btn" id="adult-dec" onclick="changeAdults(-1)">−</button>
+              <span class="counter-val" id="adult-count">2</span>
+              <button class="counter-btn" id="adult-inc" onclick="changeAdults(1)">+</button>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Last Name</label>
-            <input type="text" id="last-name" class="input" placeholder="Doe" />
+
+          <div class="divider"></div>
+
+          <div class="counter-row">
+            <div class="counter-info">
+              <div class="counter-label">Children</div>
+              <div class="counter-hint">Ages 0–17 (we'll ask each child's age)</div>
+            </div>
+            <div class="counter-ctrl">
+              <button class="counter-btn" id="child-dec" onclick="changeChildren(-1)">−</button>
+              <span class="counter-val" id="child-count">0</span>
+              <button class="counter-btn" id="child-inc" onclick="changeChildren(1)">+</button>
+            </div>
+          </div>
+
+          <div class="child-ages-wrap" id="child-ages-wrap"></div>
+
+          <div class="pax-info-bar" id="pax-info-bar">
+            <span class="pax-info-icon">ℹ</span>
+            <span id="pax-info-text">2 adults · no children · max 6 passengers</span>
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Email Address</label>
-          <input type="email" id="email" class="input" placeholder="jane@example.com" />
-          <div class="form-hint">Your booking reference will be sent here</div>
-        </div>
-      </div>
 
-      <div class="step-actions">
-        <button class="btn btn-ghost" onclick="goStep(2)">← Back</button>
-        <button class="btn btn-primary" onclick="requestQuote()">
-          Get My Quote
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Step 4: Review & Confirm -->
-    <div class="wizard-step hidden" id="step-4">
-      <h2 class="step-title">Review Your Booking</h2>
-      <p class="step-sub">Your price is locked for <span id="quote-ttl" class="ttl-badge">15:00</span></p>
-
-      <div class="review-grid">
-        <!-- Price breakdown -->
-        <div class="breakdown-card" id="breakdown-card">
-          <div class="breakdown-title">Price Breakdown</div>
-          <div class="breakdown-body" id="breakdown-body">Loading…</div>
-        </div>
-
-        <!-- Summary -->
-        <div class="summary-card">
-          <div class="summary-title">Booking Summary</div>
-          <div class="summary-rows" id="summary-rows"></div>
-          <div class="summary-total-row">
-            <span>Total (incl. tax)</span>
-            <span class="summary-total-amount" id="summary-total">—</span>
-          </div>
-          <button class="btn btn-cta" id="confirm-btn" onclick="confirmBooking()">
-            <span id="confirm-btn-text">Confirm & Book</span>
+        <div class="step-actions">
+          <button class="btn btn-primary" onclick="goStep(2)">
+            Continue
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
           </button>
-          <p class="confirm-note">Price locked · No hidden fees · Confirmation by email</p>
         </div>
       </div>
 
-      <div class="step-actions single">
-        <button class="btn btn-ghost" onclick="goStep(3)">← Edit Details</button>
+      <!-- Step 2: Extras -->
+      <div class="wizard-step hidden" id="step-2">
+        <h2 class="step-title">Optional Extras</h2>
+        <p class="step-sub">Enhance your voyage with our premium add-ons.</p>
+
+        <div class="extras-grid">
+          <label class="extra-card" id="extra-INSURANCE">
+            <input type="checkbox" value="INSURANCE" onchange="updateExtras()" />
+            <div class="extra-icon">🛡️</div>
+            <div class="extra-body">
+              <div class="extra-name">Travel Insurance</div>
+              <div class="extra-desc">Comprehensive travel protection for complete peace of mind</div>
+              <div class="extra-price">$80 <span>per passenger</span></div>
+            </div>
+            <div class="extra-check">✓</div>
+          </label>
+
+          <label class="extra-card" id="extra-WIFI">
+            <input type="checkbox" value="WIFI" onchange="updateExtras()" />
+            <div class="extra-icon">📶</div>
+            <div class="extra-body">
+              <div class="extra-name">Wi-Fi Package</div>
+              <div class="extra-desc">Stay connected with high-speed internet throughout your cruise</div>
+              <div class="extra-price">$15 <span>per passenger / night</span></div>
+            </div>
+            <div class="extra-check">✓</div>
+          </label>
+
+          <label class="extra-card" id="extra-SHORE_EXCURSION">
+            <input type="checkbox" value="SHORE_EXCURSION" onchange="updateExtras()" />
+            <div class="extra-icon">🏝️</div>
+            <div class="extra-body">
+              <div class="extra-name">Shore Excursion</div>
+              <div class="extra-desc">Guided tours and experiences at every port of call</div>
+              <div class="extra-price">$120 <span>per passenger</span></div>
+            </div>
+            <div class="extra-check">✓</div>
+          </label>
+        </div>
+        <!-- Live estimated price -->
+        <div class="live-price-box">
+          <div>
+            <span>Current estimated fare</span>
+            <small>Before tax and promotions</small>
+          </div>
+
+          <strong id="live-total">$0.00</strong>
+        </div>
+
+        <div class="promo-wrap">
+          <div class="promo-label">Have a promo code?</div>
+          <div class="promo-input-row">
+            <input type="text" id="promo-input" class="input" placeholder="e.g. SUMMER10"
+              oninput="clearPromoStatus()" />
+            <button class="btn btn-outline" onclick="applyPromo()">Apply</button>
+          </div>
+          <div class="promo-status" id="promo-status"></div>
+        </div>
+
+        <div class="step-actions">
+          <button class="btn btn-ghost" onclick="goStep(1)">← Back</button>
+          <button class="btn btn-primary" onclick="goStep(3)">
+            Continue
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Customer Details -->
+      <div class="wizard-step hidden" id="step-3">
+        <h2 class="step-title">Your Details</h2>
+        <p class="step-sub">We'll send your booking confirmation to this email address.</p>
+
+        <div class="form-card">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input type="text" id="first-name" class="input" placeholder="Jane" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input type="text" id="last-name" class="input" placeholder="Doe" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="email" class="input" placeholder="jane@example.com" />
+            <div class="form-hint">Your booking reference will be sent here</div>
+          </div>
+        </div>
+
+        <div class="step-actions">
+          <button class="btn btn-ghost" onclick="goStep(2)">← Back</button>
+          <button class="btn btn-primary" onclick="requestQuote()">
+            Get My Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 4: Review & Confirm -->
+      <div class="wizard-step hidden" id="step-4">
+        <h2 class="step-title">Review Your Booking</h2>
+        <p class="step-sub">Your price is locked for <span id="quote-ttl" class="ttl-badge">15:00</span></p>
+
+        <div class="review-grid">
+          <!-- Price breakdown -->
+          <div class="breakdown-card" id="breakdown-card">
+            <div class="breakdown-title">Price Breakdown</div>
+            <div class="breakdown-body" id="breakdown-body">Loading…</div>
+          </div>
+
+          <!-- Summary -->
+          <div class="summary-card">
+            <div class="summary-title">Booking Summary</div>
+            <div class="summary-rows" id="summary-rows"></div>
+            <div class="summary-total-row">
+              <span>Total (incl. tax)</span>
+              <span class="summary-total-amount" id="summary-total">—</span>
+            </div>
+            <button class="btn btn-cta" id="confirm-btn" onclick="confirmBooking()">
+              <span id="confirm-btn-text">Confirm & Book</span>
+            </button>
+            <p class="confirm-note">Price locked · No hidden fees · Confirmation by email</p>
+          </div>
+        </div>
+
+        <div class="step-actions single">
+          <button class="btn btn-ghost" onclick="goStep(3)">← Edit Details</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── BOOKING CONFIRMED ──────────────────────────────────── -->
+  <div class="page hidden" id="page-confirmed">
+    <div class="confirmed-wrap">
+      <div class="confirmed-animation">
+        <div class="confirmed-ring"></div>
+        <div class="confirmed-ring confirmed-ring-2"></div>
+        <div class="confirmed-icon">✓</div>
+      </div>
+      <h2 class="confirmed-title">Booking Confirmed!</h2>
+      <p class="confirmed-sub">Your voyage is booked. Have an amazing trip!</p>
+      <div class="reference-card">
+        <div class="reference-label">Your Booking Reference</div>
+        <div class="reference-code" id="confirmed-ref">ODY-XXXXXXXX</div>
+        <div class="reference-hint">Keep this safe — you can use it to retrieve your booking anytime</div>
+      </div>
+      <div class="confirmed-details" id="confirmed-details"></div>
+      <div class="confirmed-actions">
+        <button class="btn btn-primary" onclick="showPage('home')">Book Another Cruise</button>
+        <button class="btn btn-outline" onclick="lookupRef(document.getElementById('confirmed-ref').textContent)">View
+          Booking</button>
       </div>
     </div>
-
   </div>
-</div>
 
-<!-- ── BOOKING CONFIRMED ──────────────────────────────────── -->
-<div class="page hidden" id="page-confirmed">
-  <div class="confirmed-wrap">
-    <div class="confirmed-animation">
-      <div class="confirmed-ring"></div>
-      <div class="confirmed-ring confirmed-ring-2"></div>
-      <div class="confirmed-icon">✓</div>
-    </div>
-    <h2 class="confirmed-title">Booking Confirmed!</h2>
-    <p class="confirmed-sub">Your voyage is booked. Have an amazing trip!</p>
-    <div class="reference-card">
-      <div class="reference-label">Your Booking Reference</div>
-      <div class="reference-code" id="confirmed-ref">ODY-XXXXXXXX</div>
-      <div class="reference-hint">Keep this safe — you can use it to retrieve your booking anytime</div>
-    </div>
-    <div class="confirmed-details" id="confirmed-details"></div>
-    <div class="confirmed-actions">
-      <button class="btn btn-primary" onclick="showPage('home')">Book Another Cruise</button>
-      <button class="btn btn-outline" onclick="lookupRef(document.getElementById('confirmed-ref').textContent)">View Booking</button>
+  <!-- ── BOOKING LOOKUP ─────────────────────────────────────── -->
+  <div class="page hidden" id="page-lookup">
+    <div class="lookup-wrap">
+      <button class="btn-back" onclick="showPage('home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        Back to Cruises
+      </button>
+      <h2 class="step-title">Find Your Booking</h2>
+      <p class="step-sub">Enter your booking reference to view your voyage details.</p>
+      <div class="lookup-form">
+        <input type="text" id="lookup-input" class="input input-lg" placeholder="ODY-XXXXXXXX" />
+        <button class="btn btn-primary" onclick="lookupRef()">Find Booking</button>
+      </div>
+      <div class="lookup-result" id="lookup-result"></div>
     </div>
   </div>
-</div>
 
-<!-- ── BOOKING LOOKUP ─────────────────────────────────────── -->
-<div class="page hidden" id="page-lookup">
-  <div class="lookup-wrap">
-    <button class="btn-back" onclick="showPage('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back to Cruises
-    </button>
-    <h2 class="step-title">Find Your Booking</h2>
-    <p class="step-sub">Enter your booking reference to view your voyage details.</p>
-    <div class="lookup-form">
-      <input type="text" id="lookup-input" class="input input-lg" placeholder="ODY-XXXXXXXX" />
-      <button class="btn btn-primary" onclick="lookupRef()">Find Booking</button>
+  <!-- ── TOAST ──────────────────────────────────────────────── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="logo-icon">⚓</span> Odysseus
+      </div>
+      <p class="footer-copy">© 2026 Odysseus Travel Ltd. All prices include applicable taxes.</p>
+      <p class="footer-api">Powered by <a href="/docs" target="_blank">Odysseus Booking API v1.0</a></p>
     </div>
-    <div class="lookup-result" id="lookup-result"></div>
-  </div>
-</div>
+  </footer>
 
-<!-- ── TOAST ──────────────────────────────────────────────── -->
-<div class="toast-container" id="toast-container"></div>
-
-<!-- ── FOOTER ─────────────────────────────────────────────── -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-logo">
-      <span class="logo-icon">⚓</span> Odysseus
-    </div>
-    <p class="footer-copy">© 2026 Odysseus Travel Ltd. All prices include applicable taxes.</p>
-    <p class="footer-api">Powered by <a href="/docs" target="_blank">Odysseus Booking API v1.0</a></p>
-  </div>
-</footer>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
+
 </html>

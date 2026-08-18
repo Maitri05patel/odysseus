@@ -3,11 +3,11 @@
    Connects to FastAPI backend at /api/v1
    ==================================================================== */
 
-const API = '/api/v1';
-
+const API = 'http://127.0.0.1:8001/api/v1';
 // ── Global State ─────────────────────────────────────────────
 const state = {
   step: 1,
+  cruises: [],
   cruise: null,
   adults: 2,
   children: 0,
@@ -56,6 +56,7 @@ async function loadCruises() {
   try {
     const res = await fetch(`${API}/cruises`);
     const cruises = await res.json();
+    state.cruises = cruises;
     renderCruises(cruises);
   } catch (e) {
     showToast('Could not load cruises. Is the server running?', 'error');
@@ -78,7 +79,7 @@ function renderCruises(cruises) {
     const dotClass = avail <= 2 ? 'critical' : avail <= 5 ? 'low' : '';
     const availLabel = avail <= 2 ? `Only ${avail} left!` : `${avail} spaces left`;
     return `
-    <div class="cruise-card" style="animation-delay:${i * 0.08}s" onclick="selectCruise(${JSON.stringify(JSON.stringify(c))})">
+    <div class="cruise-card" style="animation-delay:${i * 0.08}s" onclick="selectCruise(${i})">
       <div class="card-header">
         <div class="card-badge">${c.destination}</div>
         <div class="card-capacity-badge">
@@ -108,7 +109,7 @@ function renderCruises(cruises) {
             <span class="fare-from">From</span>
             <span class="fare-amount">$${Number(c.adult_fare).toLocaleString()} <span>/ adult</span></span>
           </div>
-          <button class="btn-book" onclick="event.stopPropagation(); selectCruise(${JSON.stringify(JSON.stringify(c))})">
+          <button class="btn-book" onclick="event.stopPropagation(); selectCruise(${i})">
             Book Now
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
@@ -118,8 +119,8 @@ function renderCruises(cruises) {
   }).join('');
 }
 
-function selectCruise(cruiseJson) {
-  const cruise = typeof cruiseJson === 'string' ? JSON.parse(cruiseJson) : cruiseJson;
+function selectCruise(idx) {
+  const cruise = state.cruises[idx];
   state.cruise = cruise;
   state.step = 1;
   state.adults = 2;
@@ -139,6 +140,7 @@ function selectCruise(cruiseJson) {
 
   showPage('booking');
   goStep(1);
+  updateFrontendPrice();
 }
 
 // ── Wizard Step Logic ─────────────────────────────────────────
@@ -162,7 +164,6 @@ function goStep(n) {
   }
 
   // Validate step 3 (customer details)
-  if (state.step === 3 && n === 4) return; // handled by requestQuote
 
   state.step = n;
 
@@ -248,6 +249,56 @@ function updateExtras() {
   state.selectedExtras = Array.from(
     document.querySelectorAll('.extra-card input:checked')
   ).map(el => el.value);
+
+  updateFrontendPrice();
+}
+
+function updateFrontendPrice() {
+  if (!state.cruise) return;
+
+  const adultFare = Number(state.cruise.adult_fare || 0);
+  const numAdults = Number(state.adults || 0);
+  const durationNights = Number(state.cruise.duration_nights || 0);
+
+  let extrasTotal = 0;
+
+  if (state.selectedExtras.includes('INSURANCE')) {
+    extrasTotal += 80 * numAdults;
+  }
+
+  if (state.selectedExtras.includes('WIFI')) {
+    extrasTotal += 15 * numAdults * durationNights;
+  }
+
+  if (state.selectedExtras.includes('SHORE_EXCURSION')) {
+    extrasTotal += 120 * numAdults;
+  }
+
+  const baseFare = adultFare * numAdults;
+  const estimatedSubtotal = baseFare + extrasTotal;
+
+  const priceElement = document.getElementById('live-total');
+
+  if (priceElement) {
+    priceElement.textContent =
+      `$${estimatedSubtotal.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })}`;
+  }
+}
+
+const baseFare = adultFare * numAdults;
+const estimatedSubtotal = baseFare + extrasTotal;
+
+const priceElement = document.querySelector('#live-total');
+
+if (priceElement) {
+  priceElement.textContent =
+    `$${estimatedSubtotal.toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    })}`;
 }
 
 // ── Promo ─────────────────────────────────────────────────────
@@ -268,8 +319,8 @@ function applyPromo() {
 // ── Request Quote (Step 3 → 4) ────────────────────────────────
 async function requestQuote() {
   const firstName = document.getElementById('first-name').value.trim();
-  const lastName  = document.getElementById('last-name').value.trim();
-  const email     = document.getElementById('email').value.trim();
+  const lastName = document.getElementById('last-name').value.trim();
+  const email = document.getElementById('email').value.trim();
 
   if (!firstName || !lastName) { showToast('Please enter your full name.', 'error'); return; }
   if (!email || !email.includes('@')) { showToast('Please enter a valid email address.', 'error'); return; }
