@@ -7,16 +7,16 @@
 
 Tests are structured in four files:
 
-| File | Scope | Type |
-|---|---|---|
-| `test_pricing.py` | Pure pricing functions | Unit (no DB) |
-| `test_promo.py` | Promo validation chain | Integration (DB, no HTTP) |
-| `test_booking.py` | Quote & confirm service | Integration (DB, no HTTP) |
-| `test_api.py` | HTTP endpoints | E2E (full stack, test client) |
+| File | Scope | Type | Tests |
+|---|---|---|---|
+| `test_pricing.py` | Pure pricing functions | Unit (no DB) | 40 |
+| `test_promo.py` | Promo validation chain | Integration (DB, no HTTP) | 12 |
+| `test_booking.py` | Quote & confirm service | Integration (DB, no HTTP) | 17 |
+| `test_api.py` | HTTP endpoints | E2E (full stack, test client) | 30 |
 
-All tests use an **in-memory SQLite** database — no external services required. Each test function gets a fresh, isolated database.
+All tests use a **file-based SQLite** database — one fresh database file per test function, isolated via `pytest` fixtures in `conftest.py`. No external services required.
 
-Run all tests: `pytest tests/ -v`
+Run all tests: `pytest tests/ -v`  (99 tests total, all passing)
 
 ---
 
@@ -253,3 +253,5 @@ These scenarios matter but require either production PostgreSQL (for concurrency
 | Booking confirm | ✓ | ✓ | ✓ | ✓ (race condition) |
 | HTTP API | ✓ | ✓ | ✓ | – |
 | Concurrency | – | – | – | Manual only |
+
+**Total automated tests: 99** (all passing as of last run).

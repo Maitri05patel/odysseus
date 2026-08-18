@@ -288,20 +288,8 @@ function updateFrontendPrice() {
   }
 }
 
-const baseFare = adultFare * numAdults;
-const estimatedSubtotal = baseFare + extrasTotal;
-
-const priceElement = document.querySelector('#live-total');
-
-if (priceElement) {
-  priceElement.textContent =
-    `$${estimatedSubtotal.toLocaleString('en-US', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    })}`;
-}
-
 // ── Promo ─────────────────────────────────────────────────────
+
 function clearPromoStatus() {
   document.getElementById('promo-status').textContent = '';
   state.promoApplied = false;

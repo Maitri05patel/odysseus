@@ -7,6 +7,8 @@
 
 Odysseus sells cruise holidays. This document captures what the system must do, the assumptions made in interpreting the brief, and the gaps or conflicts that were identified. It is the authoritative reference for what was built and why.
 
+The system was delivered as a **FastAPI REST API** with a **browser-based SPA frontend** (HTML/CSS/JS). The frontend covers the full customer-facing booking journey: browsing cruises, selecting passengers and extras, applying a promo code, getting a locked quote, confirming a booking, and looking up a reference.
+
 ---
 
 ## 2. Functional Requirements
@@ -137,7 +139,7 @@ The following can be changed at any time by updating database records, with no c
 | A3 | Promo discount applies to the full subtotal (discounted fares + extras). | Brief says "amount off the booking" — interpreted as the full basket after group discount. |
 | A4 | A child's age band is determined by the age provided at booking time. | No mechanism for age verification is in scope. |
 | A5 | Quotes expire after 15 minutes by default (configurable). | Prevents capacity being held indefinitely by abandoned sessions. |
-| A6 | The system is an API (no HTML frontend). | Brief describes a booking system without specifying UI; API is the correct backend foundation. |
+| A6 | The system is an API with a browser-based frontend. | Brief describes a booking system. A REST API forms the backend foundation; a vanilla HTML/CSS/JS SPA was delivered as the customer-facing interface, covering all steps from cruise discovery to booking confirmation and reference lookup. |
 | A7 | Email is the customer's unique identifier. | Industry standard; no authentication system is in scope. |
 | A8 | "Infant (0–4)" children count toward the total passenger count for group discount and capacity. | They occupy a seat/berth. |
 | A9 | SQLite is used for development; PostgreSQL for production. | Zero-setup for the time-boxed build; production path documented. |

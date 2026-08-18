@@ -16,6 +16,7 @@
 | Migrations | **Alembic** | 1.13 | Schema versioning without code deploys |
 | Server | **Uvicorn** | 0.29 | ASGI server; fast, production-grade |
 | Testing | **pytest + httpx** | 8.2 / 0.27 | Standard Python test stack; httpx for async-compatible HTTP |
+| Frontend | **HTML + CSS + JS** | – | Vanilla stack; no build step; dark-ocean responsive SPA |
 
 ---
 
@@ -193,7 +194,7 @@ total = taxable_amount + tax_amount
 | **Cancellation flow** | `status` field exists but not implemented | Full cancellation with capacity release and refund calculation |
 | **Email notifications** | None | Booking confirmation email with PDF receipt containing the full price snapshot |
 | **Containerisation** | None | Docker + docker-compose for zero-friction local setup |
-| **Frontend** | API only | A Next.js or similar frontend consuming this API |
+| **Frontend** | Browser-based SPA (HTML/CSS/JS) with 4-step booking wizard, live fare estimate, quote + confirm flow, and booking lookup. Served separately via `python -m http.server 5500`. | Production: bundle with Vite/Next.js, serve via CDN or same origin with a reverse proxy. |
 
 ---
 
@@ -204,6 +205,7 @@ odysseus/
 ├── main.py                    # FastAPI app entry point
 ├── requirements.txt
 ├── .env / .env.example
+├── odysseus.db                # SQLite dev database
 ├── app/
 │   ├── config.py              # Settings from env vars
 │   ├── database.py            # Engine + session factory
@@ -213,17 +215,66 @@ odysseus/
 │   └── api/
 │       ├── schemas.py         # Pydantic request/response models
 │       └── routes.py          # FastAPI route handlers
+├── frontend/
+│   ├── index.html             # SPA shell — nav, hero, wizard, lookup
+│   ├── style.css              # Dark-ocean design system + all component styles
+│   └── app.js                 # All JS: state machine, API calls, DOM rendering
 ├── seed/
 │   └── seed.py                # DB seed script
 ├── tests/
-│   ├── conftest.py            # Fixtures (in-memory DB, test client)
+│   ├── conftest.py            # Fixtures (file-based SQLite per test, test client)
 │   ├── test_pricing.py        # Pure pricing logic tests
 │   ├── test_promo.py          # Promo validation chain tests
 │   ├── test_booking.py        # Booking service integration tests
 │   └── test_api.py            # Full HTTP API tests
 └── docs/
-    ├── businessrequirements.md
-    ├── technical_approach.md   (this document)
-    ├── unittestcase.md
-    └── prompt.md
+    ├── BusinessRequirements.md
+    ├── TechnicalApproach.md    (this document)
+    ├── UnitTestCases.md
+    └── Prompts.md
 ```
+
+## 7. Frontend Architecture
+
+The UI is a single-page application (SPA) with no build step — pure HTML, CSS, and vanilla JavaScript.
+
+```
+Browser (http://localhost:5500)
+         │
+         │  fetch() calls to http://127.0.0.1:8001/api/v1
+         │
+    FastAPI backend
+         │
+    SQLite (odysseus.db)
+```
+
+### State machine
+
+`app.js` holds a single `state` object:
+
+```js
+{
+  cruises: [],        // loaded from /api/v1/cruises
+  cruise: null,       // selected cruise object
+  adults: 2,
+  children: 0,
+  childAges: [],
+  selectedExtras: [],
+  promoCode: '',
+  promoApplied: false,
+  customer: null,     // returned by POST /api/v1/customers
+  quote: null,        // returned by POST /api/v1/quotes
+  quoteTimer: null,   // setInterval handle for 15-min countdown
+}
+```
+
+### Wizard steps
+
+| Step | Description | API call |
+|---|---|---|
+| 1 | Select adults, children, child ages | none (local) |
+| 2 | Choose extras, enter promo code | none (local) |
+| 3 | Enter name and email; click "Get My Quote" | `POST /customers` then `POST /quotes` |
+| 4 | Review locked quote; click "Confirm & Book" | `POST /bookings` |
+
+A live estimated fare updates on Step 2 as extras are toggled. The authoritative price comes from the backend quote.
